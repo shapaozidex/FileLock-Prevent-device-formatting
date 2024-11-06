@@ -18,7 +18,6 @@ KPM_DESCRIPTION("Prevent your phone from being maliciously formatted");
 #define PATH_MAX 256
 #define LOOKUP_FOLLOW 0x0001
 
-
 struct vfsmount;
 struct super_block {
 
@@ -42,16 +41,10 @@ struct file {
     struct inode    *f_inode;
 };
 
-//hook错误码
 static hook_err_t hook_err = HOOK_NOT_HOOK;
-
-//删除文件
 static int (*do_unlinkat)(int dfd, struct filename *name);
-
-//删除目录
 static int (*do_rmdir)(int dfd, struct filename *name);
 
-//解析路径要用的函数
 int (*kern_path)(const char *name, unsigned int flags, struct path *path) = NULL;
 char *(*d_path)(const struct path *path, char *buf, int buflen) = NULL;
 void (*path_put)(const struct path *path) = NULL;
@@ -64,25 +57,20 @@ static bool check_path(struct filename *name)
     int error;
 
     memset(buf, 0, PATH_MAX);
-    // 解析路径，获取 struct path
     error = kern_path(name->name, LOOKUP_FOLLOW, &path);
     if (error) {
         pr_err("[yuuki] kern_path failed: %d\n", error);
         return false;
     }
 
-    // 获取路径字符串
     char* res = d_path(&path, buf, PATH_MAX);
     if (IS_ERR(res)) {
         pr_err("[yuuki] d_path failed: %ld\n", PTR_ERR(res));
         path_put(&path);
         return false;
     }
-
-    // 释放 path
     path_put(&path);
 
-    // 比较路径字符串
     if (strncmp(res, "/storage/emulated/0/Yuuki_Test/", 30) == 0) {//len - 1
         //pr_info("[yuuki] filepath = %s\n", res);
         return true;
@@ -171,11 +159,11 @@ static inline bool uninstallHook() {
     return true;
 }
 
-static inline bool anti_format_device_control_internal(bool enable) {
+static inline bool control_internal(bool enable) {
     return enable ? installHook() : uninstallHook();
 }
 
-static long anti_format_device_init(const char *args, const char *event, void *__user reserved){
+static long mod_init(const char *args, const char *event, void *__user reserved){
     pr_info("[yuuki] Initializing...\n");
     pr_info("[yuuki] args = %s\n", args);
 
@@ -215,18 +203,18 @@ static long anti_format_device_init(const char *args, const char *event, void *_
     return ret;
 }
 
-static long anti_format_device_control0(const char *args, char *__user out_msg, int outlen) {
+static long mod_control0(const char *args, char *__user out_msg, int outlen) {
     pr_info("[yuuki] kpm hello control0, args: %s\n", args);
-    anti_format_device_control_internal(true);
+    control_internal(true);
     return 0;
 }
 
-static long anti_format_device_exit(void *__user reserved) {
-    anti_format_device_control_internal(false);
-    pr_info("[yuuki] anti_format_device_exit, uninstalled hook.\n");
+static long mod_exit(void *__user reserved) {
+    control_internal(false);
+    pr_info("[yuuki] mod_exit, uninstalled hook.\n");
     return 0;
 }
 
-KPM_INIT(anti_format_device_init);
-KPM_CTL0(anti_format_device_control0);
-KPM_EXIT(anti_format_device_exit);
+KPM_INIT(mod_init);
+KPM_CTL0(mod_control0);
+KPM_EXIT(mod_exit);
