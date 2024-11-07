@@ -1,8 +1,10 @@
 # KernelMod
 A linux(android) kernel module that prevents important files from being deleted
 
-这是学习linux内核时顺便写的，使用了kernelpatch提供的api
+前两天手机有的文件被小孩误删了，一气之下写了这个模块
 
-通过hook do_unlinkat 和 do_rmdir函数实现拦截删除操作，从而避免文件被删除
+功能:保护默认目录 and 用户输入目录的文件
 
-还有一些不足，但是以后也不会改了，感兴趣的可以自行修改
+模块启用后，目标文件无法被写入，无法被删除
+
+此项目仅供参考 可能存在一些bug，请勿乱刷内核模块😋😋😋
