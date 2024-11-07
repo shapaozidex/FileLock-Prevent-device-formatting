@@ -17,7 +17,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Loading kpatch module with root permission..."
-adb shell "su -c 'kpatch 107017li kpm load /data/local/tmp/mod_main.kpm'"
+adb shell "su -c 'kpatch $key kpm load /data/local/tmp/mod_main.kpm'"
 
 if [ $? -ne 0 ]; then
     echo "Failed to load kpatch module. Exiting."
