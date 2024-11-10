@@ -5,6 +5,6 @@ A linux(android) kernel module that prevents important files from being deleted
 
 功能:保护用户输入目录的文件
 
-模块启用后，目标文件无法读写，无法被删除，无法重命名，无法移动，无法复制
+模块启用后，目标文件无法读写，无法被删除，无法重命名，无法移动，无法复制，你几乎完全无法操作这个文件
 
 此项目仅供参考 可能存在一些bug，请勿乱刷内核模块😋😋😋
