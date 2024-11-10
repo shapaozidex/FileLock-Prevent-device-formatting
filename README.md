@@ -1,5 +1,5 @@
 # KernelMod
-A linux(android) kernel module that prevents important files from being deleted
+A linux(android) kernel module based on kernelpatch that prevents important files from being deleted
 
 前两天手机有的文件被小孩误删了，一气之下写了这个模块
 
