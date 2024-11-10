@@ -9,12 +9,12 @@ void parse_paths(char *args, char paths[MAX_PATHS][PATH_MAX], int *path_count) {
     while (line && i < MAX_PATHS) {
         next_line = strchr(line, '\n');
         if (next_line) {
-            *next_line = '\0';  // 将换行符替换为字符串结束符
-            next_line++;  // 移动到下一行的开始
+            *next_line = '\0';
+            next_line++;
         }
 
         strncpy(paths[i], line, PATH_MAX - 1);
-        paths[i][PATH_MAX - 1] = '\0';  // 确保字符串以空字符结尾
+        paths[i][PATH_MAX - 1] = '\0';
         i++;
 
         line = next_line;
