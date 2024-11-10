@@ -25,9 +25,7 @@ static struct file *replace_do_filp_open(int dfd, struct filename *pathname, con
 static hook_err_t hook_err = HOOK_NOT_HOOK;
 
 static int (*do_unlinkat)(int dfd, struct filename *name);
-
 static int (*do_rmdir)(int dfd, struct filename *name);
-
 static int (*vfs_rename)(struct renamedata *rd);
 
 int (*kern_path)(const char *name, unsigned int flags, struct path *path) = NULL;
