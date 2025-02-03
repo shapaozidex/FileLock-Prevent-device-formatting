@@ -1,4 +1,5 @@
 # KernelMod
+
 A Linux (Android) kernel module based on kernelpatch that prevents important files or partitions from being deleted or written to
 
 基于 kernelpatch 的 linux(android) 内核模块，可防止重要文件或者分区被删除或写入
@@ -17,20 +18,22 @@ A Linux (Android) kernel module based on kernelpatch that prevents important fil
 # 功能介绍
 1.保护用户输入的  目录  文件夹  文件
 
-2.模块启用后，目标文件无法写，无法被删除，无法重命名，你几乎完全无法操作这个文件
+2.模块启用后，目标文件无法写，无法被删除，无法重命名，你几乎无法操作这个文件
 
-3.如果你要让文件变得“几乎完全无法操作”（无法读写，无法被删除，无法重命名，无法移动，无法复制），那就自己改代码吧，代码里留了示例。
+3.如果你要让文件变得“几乎完全无法操作”（无法读取，无法写入写，无法被删除，无法重命名，无法移动，无法复制），那就自己改代码吧（加两个操作标志就行了）
 
 # 使用方法
 add 【示例:add /data/media/0/mod_main.kpm】保护这个地址
 ****
 remove 【示例:remove /data/media/0/mod_main.kpm】不再保护这个地址
 ****
-rm -rf 【示例:rm -rf】保护提前在模块里预设的地址(不要问为什么是rm，问就是😋😋😋)
-****
-unhook【示例:unhook】卸载/还原?已hook的函数
-****
 ls【示例:ls】在dmesg日志中打印并列出已保护的地址
 
 
 # 此项目仅供参考 可能存在一些bug,请勿乱刷内核模块😋😋😋
+
+# 代码贡献者
+
+[github@shapaozidex](https://github.com/shapaozidex)
+
+[github@SoyBeanMilkx](https://github.com/SoyBeanMilkx)

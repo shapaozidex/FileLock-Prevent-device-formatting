@@ -17,11 +17,11 @@ if [ ${PIPESTATUS[0]} -ne 0 ]; then
     exit 1
 fi
 
-echo "Pushing mod_main.kpm to device..."
-adb push mod_main.kpm /storage/emulated/0/Download/
+echo "Pushing module.kpm to device..."
+adb push module.kpm /storage/emulated/0/Download/
 
 if [ $? -ne 0 ]; then
-    echo "Failed to push mod_main.kpm to device. Exiting."
+    echo "Failed to push module.kpm to device. Exiting."
     exit 1
 fi
 
