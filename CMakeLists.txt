@@ -32,7 +32,7 @@ include_directories(
 # 添加源文件
 set(SOURCE_FILES
     ./src/main.c
-    ./src/test.c
+    ./src/module.c
 )
 
 
