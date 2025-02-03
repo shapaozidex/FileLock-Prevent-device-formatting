@@ -9,7 +9,7 @@
 #include <common.h>
 #include <kputils.h>
 #include <linux/string.h>
-#include "test.h"
+#include "module.h"
 
 ///< The name of the module, each KPM must has a unique name.
 KPM_NAME("File_Guard");

@@ -20,7 +20,7 @@ INCLUDE_FLAGS := $(foreach dir,$(INCLUDE_DIRS),-I$(KP_DIR)/kernel/$(dir)) -I./sr
 
 # c文件添加在这里
 BASE_SRCS += ./src/main.c
-BASE_SRCS += ./src/test.c
+BASE_SRCS += ./src/module.c
 
 SRCS += $(BASE_SRCS)
 

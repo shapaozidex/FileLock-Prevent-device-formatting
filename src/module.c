@@ -6,7 +6,7 @@
 #include <linux/string.h>
 #include "file.h"
 #include <syscall.h>
-#include <linux/errno.h>  // 添加这行来定义 EACCES
+#include <linux/errno.h>  // 定义 EACCES
 
 // 开关控制变量
 static bool enable_do_unlinkat = true;
